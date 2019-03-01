@@ -1,5 +1,8 @@
 # ide
 .idea/vcs.xml
+.idea/workspace.xml
+.idea/modules.xml
+.idea/sound-and-music-computing.iml
 
 # dataset
 /data/music_wav/
