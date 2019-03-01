@@ -1,0 +1,6 @@
+# ide
+.idea/vcs.xml
+
+# dataset
+/data/music_wav/
+/data/speech_wav/
