@@ -1,0 +1,413 @@
+
+trees.LMT gives the best result with only 3 misclassifications (F1=0.977), followed by trees.J48 (F1=0.969) with
+4 misclassifications, and then trees.REPTree with 5 misclassifications (F1=0.961).
+
+the standard deviation of the peak-to-average ratio in the time domain (PAR_STD_TIME) was the greatest contributor in
+classification across all 3 algorithms. it was weighted the most heavily in trees.LMT, formed the root of the tree in
+trees_J48, and was the sole feature used in trees_REPTree (where it still achieved an impressive F1 of 0.961).
+this is in line with our intuitions of speech having many staggered bursts of peaks where amplitude is higher and
+significantly lower / near zero amplitude during pauses when speaking, causing much amplitude variation over time.
+this is very different from music, which tends to maintain a similar volume and have smoother and less spiky
+transitions throughout the length of the signal (time).
+
+in all 3 algorithms, a larger proportion of misclassifications arose from music being wrongly classified as speech.
+in fact when trees.REPTree is used, 100% of misclassifications are due to music that were labelled as speech.
+also in all 3 algorithms, for the music class: precision > recall, while the opposite is observed in the
+speech class: recall > precision.  
+
+
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.LMT -I -1 -M 15 -W 0.0
+Relation:     music_speech-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0
+Instances:    128
+Attributes:   73
+              RMS_MEAN_TIME
+              PAR_MEAN_TIME
+              ZCR_MEAN_TIME
+              MAD_MEAN_TIME
+              MEAN_AD_MEAN_TIME
+              RMS_STD_TIME
+              PAR_STD_TIME
+              ZCR_STD_TIME
+              MAD_STD_TIME
+              MEAN_AD_STD_TIME
+              SC_MEAN_SPECTRAL
+              SRO_MEAN_SPECTRAL
+              SFM_MEAN_SPECTRAL
+              PARFFT_MEAN_SPECTRAL
+              FLUX_MEAN_SPECTRAL
+              SC_STD_SPECTRAL
+              SRO_STD_SPECTRAL
+              SFM_STD_SPECTRAL
+              PARFFT_STD_SPECTRAL
+              FLUX_STD_SPECTRAL
+              MFCC_0
+              MFCC_1
+              MFCC_2
+              MFCC_3
+              MFCC_4
+              MFCC_5
+              MFCC_6
+              MFCC_7
+              MFCC_8
+              MFCC_9
+              MFCC_10
+              MFCC_11
+              MFCC_12
+              MFCC_13
+              MFCC_14
+              MFCC_15
+              MFCC_16
+              MFCC_17
+              MFCC_18
+              MFCC_19
+              MFCC_20
+              MFCC_21
+              MFCC_22
+              MFCC_23
+              MFCC_24
+              MFCC_25
+              MFCC_26
+              MFCC_27
+              MFCC_28
+              MFCC_29
+              MFCC_30
+              MFCC_31
+              MFCC_32
+              MFCC_33
+              MFCC_34
+              MFCC_35
+              MFCC_36
+              MFCC_37
+              MFCC_38
+              MFCC_39
+              MFCC_40
+              MFCC_41
+              MFCC_42
+              MFCC_43
+              MFCC_44
+              MFCC_45
+              MFCC_46
+              MFCC_47
+              MFCC_48
+              MFCC_49
+              MFCC_50
+              MFCC_51
+              class
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Logistic model tree
+------------------
+: LM_1:14/14 (128)
+
+Number of Leaves  : 	1
+
+Size of the Tree : 	1
+LM_1:
+Class music :
+7.57 +
+[PAR_STD_TIME] * -12.57 +
+[PARFFT_STD_SPECTRAL] * -1.94 +
+[MFCC_9] * -1.73 +
+[MFCC_29] * -1.71 +
+[MFCC_31] * -2.14 +
+[MFCC_35] * -2.42 +
+[MFCC_51] * 6.47
+
+Class speech :
+-7.57 +
+[PAR_STD_TIME] * 12.57 +
+[PARFFT_STD_SPECTRAL] * 1.94 +
+[MFCC_9] * 1.73 +
+[MFCC_29] * 1.71 +
+[MFCC_31] * 2.14 +
+[MFCC_35] * 2.42 +
+[MFCC_51] * -6.47
+
+
+Time taken to build model: 0.27 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         125               97.6563 %
+Incorrectly Classified Instances         3                2.3438 %
+Kappa statistic                          0.9531
+Mean absolute error                      0.041
+Root mean squared error                  0.1204
+Relative absolute error                  8.2008 %
+Root relative squared error             24.0622 %
+Total Number of Instances              128
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.969    0.016    0.984      0.969    0.976      0.953    0.999     0.999     music
+                 0.984    0.031    0.969      0.984    0.977      0.953    0.999     0.999     speech
+Weighted Avg.    0.977    0.023    0.977      0.977    0.977      0.953    0.999     0.999
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 62  2 |  a = music
+  1 63 |  b = speech
+
+
+
+
+
+
+
+  === Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     music_speech-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0
+Instances:    128
+Attributes:   73
+              RMS_MEAN_TIME
+              PAR_MEAN_TIME
+              ZCR_MEAN_TIME
+              MAD_MEAN_TIME
+              MEAN_AD_MEAN_TIME
+              RMS_STD_TIME
+              PAR_STD_TIME
+              ZCR_STD_TIME
+              MAD_STD_TIME
+              MEAN_AD_STD_TIME
+              SC_MEAN_SPECTRAL
+              SRO_MEAN_SPECTRAL
+              SFM_MEAN_SPECTRAL
+              PARFFT_MEAN_SPECTRAL
+              FLUX_MEAN_SPECTRAL
+              SC_STD_SPECTRAL
+              SRO_STD_SPECTRAL
+              SFM_STD_SPECTRAL
+              PARFFT_STD_SPECTRAL
+              FLUX_STD_SPECTRAL
+              MFCC_0
+              MFCC_1
+              MFCC_2
+              MFCC_3
+              MFCC_4
+              MFCC_5
+              MFCC_6
+              MFCC_7
+              MFCC_8
+              MFCC_9
+              MFCC_10
+              MFCC_11
+              MFCC_12
+              MFCC_13
+              MFCC_14
+              MFCC_15
+              MFCC_16
+              MFCC_17
+              MFCC_18
+              MFCC_19
+              MFCC_20
+              MFCC_21
+              MFCC_22
+              MFCC_23
+              MFCC_24
+              MFCC_25
+              MFCC_26
+              MFCC_27
+              MFCC_28
+              MFCC_29
+              MFCC_30
+              MFCC_31
+              MFCC_32
+              MFCC_33
+              MFCC_34
+              MFCC_35
+              MFCC_36
+              MFCC_37
+              MFCC_38
+              MFCC_39
+              MFCC_40
+              MFCC_41
+              MFCC_42
+              MFCC_43
+              MFCC_44
+              MFCC_45
+              MFCC_46
+              MFCC_47
+              MFCC_48
+              MFCC_49
+              MFCC_50
+              MFCC_51
+              class
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+PAR_STD_TIME <= 0.362055: music (60.0)
+PAR_STD_TIME > 0.362055
+|   MFCC_30 <= 0.230343
+|   |   RMS_MEAN_TIME <= 0.159687: speech (2.0)
+|   |   RMS_MEAN_TIME > 0.159687: music (4.0)
+|   MFCC_30 > 0.230343: speech (62.0)
+
+Number of Leaves  : 	4
+
+Size of the tree : 	7
+
+
+Time taken to build model: 0.01 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         124               96.875  %
+Incorrectly Classified Instances         4                3.125  %
+Kappa statistic                          0.9375
+Mean absolute error                      0.0313
+Root mean squared error                  0.1683
+Relative absolute error                  6.2467 %
+Root relative squared error             33.6383 %
+Total Number of Instances              128
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.953    0.016    0.984      0.953    0.968      0.938    0.976     0.976     music
+                 0.984    0.047    0.955      0.984    0.969      0.938    0.976     0.954     speech
+Weighted Avg.    0.969    0.031    0.969      0.969    0.969      0.938    0.976     0.965
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 61  3 |  a = music
+  1 63 |  b = speech
+
+
+
+
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.REPTree -M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0
+Relation:     music_speech-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0
+Instances:    128
+Attributes:   73
+              RMS_MEAN_TIME
+              PAR_MEAN_TIME
+              ZCR_MEAN_TIME
+              MAD_MEAN_TIME
+              MEAN_AD_MEAN_TIME
+              RMS_STD_TIME
+              PAR_STD_TIME
+              ZCR_STD_TIME
+              MAD_STD_TIME
+              MEAN_AD_STD_TIME
+              SC_MEAN_SPECTRAL
+              SRO_MEAN_SPECTRAL
+              SFM_MEAN_SPECTRAL
+              PARFFT_MEAN_SPECTRAL
+              FLUX_MEAN_SPECTRAL
+              SC_STD_SPECTRAL
+              SRO_STD_SPECTRAL
+              SFM_STD_SPECTRAL
+              PARFFT_STD_SPECTRAL
+              FLUX_STD_SPECTRAL
+              MFCC_0
+              MFCC_1
+              MFCC_2
+              MFCC_3
+              MFCC_4
+              MFCC_5
+              MFCC_6
+              MFCC_7
+              MFCC_8
+              MFCC_9
+              MFCC_10
+              MFCC_11
+              MFCC_12
+              MFCC_13
+              MFCC_14
+              MFCC_15
+              MFCC_16
+              MFCC_17
+              MFCC_18
+              MFCC_19
+              MFCC_20
+              MFCC_21
+              MFCC_22
+              MFCC_23
+              MFCC_24
+              MFCC_25
+              MFCC_26
+              MFCC_27
+              MFCC_28
+              MFCC_29
+              MFCC_30
+              MFCC_31
+              MFCC_32
+              MFCC_33
+              MFCC_34
+              MFCC_35
+              MFCC_36
+              MFCC_37
+              MFCC_38
+              MFCC_39
+              MFCC_40
+              MFCC_41
+              MFCC_42
+              MFCC_43
+              MFCC_44
+              MFCC_45
+              MFCC_46
+              MFCC_47
+              MFCC_48
+              MFCC_49
+              MFCC_50
+              MFCC_51
+              class
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+
+REPTree
+============
+
+PAR_STD_TIME < 0.37 : music (41/0) [19/0]
+PAR_STD_TIME >= 0.37 : speech (44/2) [24/2]
+
+Size of the tree : 3
+
+Time taken to build model: 0.01 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         123               96.0938 %
+Incorrectly Classified Instances         5                3.9063 %
+Kappa statistic                          0.9219
+Mean absolute error                      0.0635
+Root mean squared error                  0.1914
+Relative absolute error                 12.6876 %
+Root relative squared error             38.2663 %
+Total Number of Instances              128
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.922    0.000    1.000      0.922    0.959      0.925    0.949     0.966     music
+                 1.000    0.078    0.928      1.000    0.962      0.925    0.949     0.913     speech
+Weighted Avg.    0.961    0.039    0.964      0.961    0.961      0.925    0.949     0.939
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 59  5 |  a = music
+  0 64 |  b = speech

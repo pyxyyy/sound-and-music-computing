@@ -1,0 +1,9 @@
+the two .wav files sound different as the piano notes in scale.wav continues to linger (i.e. amplitude > 0)
+after the next note is played, in contrast to the generated sin_scale.wav where each note cuts off sharply (i.e.
+amplitude = 0) when the next note is played. this is clearly observable if you plot spectrograms of both .wav files.
+another factor that attributes to the different sound between the two .wav files is the non-equal rate of amplitude
+reduction of each note with time; in scale.wav the amplitude decrease for a note as time passes occurs at a much higher
+rate than in sin_scale.wav, apparent from the difference in intensity on the spectrograms. additionally, another reason
+for the difference is that there are harmonic partials that are present in scale.wav that are not present in
+sin_scale.wav (i.e. the higher freq partials). these three factors collectively contribute to the difference in the
+sounds of scale.wav and sin_scale.wav.
